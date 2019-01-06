@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+// import Index from './pages/index'
+import Router from './Router'
 class App extends Component {
   render() {
     return (
@@ -19,6 +20,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Router />
         </header>
       </div>
     );
