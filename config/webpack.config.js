@@ -448,7 +448,7 @@ module.exports = function(webpackEnv) {
             },
             {
               test: /\.styl$/,
-              loaders: ['style-loader', 'css-loader', 'stylus-loader']
+              loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]', 'stylus-loader']
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
