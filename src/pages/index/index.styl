@@ -1,0 +1,48 @@
+.banner-box {
+  width: 100%;
+}
+
+.banner {
+  display: block;
+  width: 100%;
+}
+
+.index-page {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  z-index: 99;
+}
+
+.swiper-container {
+  position: relative;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 99;
+  transform: translateX(-50%);
+
+  >span {
+    width: 55px;
+    height: 5px;
+    display: inline-block;
+    margin-right: 16px;
+    background-color: white;
+    border-radius: 4px
+    cursor pointer
+    &.active {
+      background-color: #c0a264;
+    }
+
+    &:last-child {
+      margin-left: 0;
+    }
+  }
+}

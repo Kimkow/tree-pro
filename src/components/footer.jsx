@@ -5,19 +5,22 @@ import Hideen from '@material-ui/core/Hidden';
 import RQImg from '../assets/images/201703031157165716.jpg'
 import CS from '../assets/style/common.styl'
 import callUs from '../pages/callus/titleData'
+
 const links = [
   { name: '网站地图', link: '' },
   { name: '法律申明', link: '' },
   { name: '站长统计', link: '' },
   { name: '友情链接', link: '' }
 ];
+
 const linksItmes = links.map((o, index) => {
   return (
     <li key={index}><a href={o.link}>{o.name}</a></li>
   )
 });
-const footerHeaders = Object.keys(callUs).map((key,index) => {
-  const ddItems = callUs[key].map((o,k) => {
+
+const footerHeaders = Object.keys(callUs).map((key, index) => {
+  const ddItems = callUs[key].map((o, k) => {
     return (
       <dd key={k}><a href={o.link}>{o.name}</a></dd>
     );
@@ -31,6 +34,7 @@ const footerHeaders = Object.keys(callUs).map((key,index) => {
     </li>
   );
 });
+
 class Footer extends Component {
   componentDidMount() {
   }
@@ -38,7 +42,7 @@ class Footer extends Component {
     return (
       <div className="footer-container">
         <Hideen smDown>
-          <ul styleName="footer-header">{footerHeaders}</ul>
+          <ul className={CS.footer} styleName="footer-header">{footerHeaders}</ul>
           <div styleName='footer-body'>
             <ul>{linksItmes}</ul>
             <div styleName='QR-box'>
