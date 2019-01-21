@@ -49,23 +49,25 @@ class Index extends Component {
     this.setState({ index });
   };
   componentDidMount() {
-    setInterval(()=>{
+    /* setInterval(()=>{
       let index = this.state.index+1;
       if(index === 3){
         index = 0;
       }
       this.setState({ index });
-    },2000);
+    },5000); */
+    console.log(this.props.location)
   }
   render() {
     const Pagin = CSSModules(Pagination, IS)
+    const menuName = this.props.location.pathname
     return (
       <div className="index-page" >
         <Hideen smDown>
           <Link to="/others" styleName='title' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
+        <TreeMenu menuName={menuName}/>
         <Hideen mdUp>
-        <TreeMenu />
           <Link to="/others" styleName='title mdUp' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
         <div styleName="swiper-container">

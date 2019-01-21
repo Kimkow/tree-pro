@@ -5,7 +5,7 @@ import { HashRouter, Link } from "react-router-dom";
 // import PropTypes from 'prop-types'
 import RQImg from '../assets/images/201703031157165716.jpg'
 import CS from '../assets/style/common.styl'
-import callUs from '../pages/callus/titleData'
+import callUs from '../pages/titleData'
 
 const links = [
   { name: '网站地图', link: '/' },

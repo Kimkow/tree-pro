@@ -30,5 +30,5 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #### 浏览器媒体查询 
 Material-UI-React-Layout-响应式布局(https://www.jianshu.com/p/ff9eeaa9c27c)
 https://material-ui.com/layout/hidden/
-smDwon (width<=960 hide) === (width>=960 show) PC端
+smDown (width<=960 hide) === (width>=960 show) PC端
 mdUp (width>=960 hide) === (width <=960 show) 移动端
