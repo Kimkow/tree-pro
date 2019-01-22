@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import Hideen from '@material-ui/core/Hidden';
+import { HashRouter, Link } from "react-router-dom";
 // import PropTypes from 'prop-types'
 import RQImg from '../assets/images/201703031157165716.jpg'
 import CS from '../assets/style/common.styl'
-import callUs from '../pages/callus/titleData'
+import callUs from '../pages/titleData'
 
 const links = [
-  { name: '网站地图', link: '' },
-  { name: '法律申明', link: '' },
-  { name: '站长统计', link: '' },
-  { name: '友情链接', link: '' }
+  { name: '网站地图', link: '/' },
+  { name: '法律申明', link: '/' },
+  { name: '站长统计', link: '/' },
+  { name: '友情链接', link: '/' }
 ];
 
 const linksItmes = links.map((o, index) => {
   return (
-    <li key={index}><a href={o.link}>{o.name}</a></li>
+    <li key={index}><Link to={o.link} replace>{o.name}</Link></li>
   )
 });
 
 const footerHeaders = Object.keys(callUs).map((key, index) => {
   const ddItems = callUs[key].map((o, k) => {
     return (
-      <dd key={k}><a href={o.link}>{o.name}</a></dd>
+      <dd key={k}><Link to={o.link} replace>{o.name}</Link></dd>
     );
   });
   return (
@@ -40,26 +41,28 @@ class Footer extends Component {
   }
   render() {
     return (
-      <div className="footer-container">
-        <Hideen smDown>
-          <ul className={CS.footer} styleName="footer-header">{footerHeaders}</ul>
-          <div styleName='footer-body'>
-            <ul>{linksItmes}</ul>
-            <div styleName='QR-box'>
-              <p>扫一扫<br />关注我们了解最新资讯</p>
+      <HashRouter>
+        <div className="footer-container">
+          <Hideen smDown>
+            <ul className={CS.footer} styleName="footer-header">{footerHeaders}</ul>
+            <div styleName='footer-body'>
+              <ul>{linksItmes}</ul>
+              <div styleName='QR-box'>
+                <p>扫一扫<br />关注我们了解最新资讯</p>
+                <img src={RQImg} alt="二维码" />
+              </div>
+              <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
+            </div>
+          </Hideen>
+          <Hideen mdUp>
+            <div styleName='footer-body mobile'>
+              <ul>{linksItmes}</ul>
+              <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
               <img src={RQImg} alt="二维码" />
             </div>
-            <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
-          </div>
-        </Hideen>
-        <Hideen mdUp>
-          <div styleName='footer-body mobile'>
-            <ul>{linksItmes}</ul>
-            <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
-            <img src={RQImg} alt="二维码" />
-          </div>
-        </Hideen>
-      </div>
+          </Hideen>
+        </div>
+      </HashRouter>
     );
   }
 }
