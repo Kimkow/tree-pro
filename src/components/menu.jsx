@@ -9,9 +9,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from "react-router-dom";
 
 const options = [
-  { name: '首页', link: '/', pathName:'index'},
+  { name: '首页', link: '/' },
   { name: '关于四季青', link: '/others/about' },
-  { name: '工程系列', link: '/others/object'},
+  { name: '工程系列', link: '/others/object' },
   { name: '苗木系列', link: '/others/miaomu' },
   { name: '新闻资讯', link: '/others/news' },
   { name: '人力资源', link: '/others/peoples' },
@@ -40,20 +40,27 @@ class TreeMenu extends Component {
     this.setState({ isOpen: false });
   }
   componentDidMount() {
-    console.log(this.props)
   }
   render() {
     const open = this.state.isOpen;
     const anchorEl = this.state.anchorEl;
+
+    const menuList = options.map((option, index) => {
+      let activeMenu = '';
+      if (option.link === this.props.menuName) {
+        activeMenu = 'on'
+      }
+      return (
+        <div styleName={`title-0${index + 1} ${activeMenu}`} key={index}>
+          <span><Link to={option.link} replace></Link></span>
+        </div>
+      )
+    })
     return (
       <div styleName="tree-menu">
         <Hideen smDown>
           <div styleName="title-box">
-            {options.map((option, index) => (
-              <div styleName={`title-0${index +1}`} key={index}>
-                <span><Link to={option.link} replace></Link></span>
-              </div>
-            ))}
+            {menuList}
           </div>
         </Hideen>
         <Hideen mdUp>

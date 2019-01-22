@@ -32,6 +32,28 @@ function Pagination(props) {
   );
 }
 
+function Body() {
+  return (
+    <div styleName='body'>
+      <Hideen mdUp>
+        <div styleName="pd-10">
+          <h1 styleName="body-h1">公司<span>简介</span></h1>
+          <h3 styleName="body-h3">深圳市四季青园林股份有限公司</h3>
+          <p styleName="body-p">深圳市四季青园林股份有限公司（原深圳市四季青园林花卉有限公司）始创于1986年，是一家集苗木生产与销售、园林景观规划设计和建设施工于一体的专业园林景观公司。公司具有国家建设部颁发的城市园林绿化一级企业资质、风景园林设计专项乙级资格证书</p>
+          <p styleName="body-p"> 自成立之初，四季青就一直秉持着“规划设计为魂•施工建设为体•苗木产销为器”的系统化运营理念，始终坚持并努力践行“环境提升价值•绿色写意生活•细节雕琢完美”的品牌思想，先后与多家国际知名景观设计公司：CICADA、ACOM、BCA、EDSA、和ACLA等，以及与多家国内知名品牌地产开发商：万科、万达、佳兆业、恒大、华侨城等建立了长期稳定的合作关系，以品质和服务赢得了市场。</p>
+          <p style={{ textAlign: 'center' }}>
+            <Button variant="contained" color="primary" href="#about" styleName="body-button">查看更多</Button>
+          </p>
+          <img src={require('../../assets/images/201703031544534453.jpg')} alt="" styleName="body-img" />
+        </div>
+        <div styleName="white-body">
+          <h1 styleName="body-h1">工程<span>系列</span></h1>
+        </div>
+      </Hideen>
+    </div>
+  )
+}
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -49,24 +71,17 @@ class Index extends Component {
     this.setState({ index });
   };
   componentDidMount() {
-    /* setInterval(()=>{
-      let index = this.state.index+1;
-      if(index === 3){
-        index = 0;
-      }
-      this.setState({ index });
-    },5000); */
-    console.log(this.props.location)
   }
   render() {
-    const Pagin = CSSModules(Pagination, IS)
+    const PaginationIS = CSSModules(Pagination, IS)
     const menuName = this.props.location.pathname
+    const BodyIS = CSSModules(Body, IS)
     return (
       <div className="index-page" >
         <Hideen smDown>
           <Link to="/others" styleName='title' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
-        <TreeMenu menuName={menuName}/>
+        <TreeMenu menuName={menuName} />
         <Hideen mdUp>
           <Link to="/others" styleName='title mdUp' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
@@ -74,8 +89,9 @@ class Index extends Component {
           <SwipeableViews enableMouseEvents styleName="banner-box" index={this.state.index} onChangeIndex={this.handleChangeIndex}>
             {bannerView}
           </SwipeableViews>
-          <Hideen smDown><Pagin index={this.state.index} onChangeIndex={this.handleChangeIndex} /></Hideen>
+          <Hideen smDown><PaginationIS index={this.state.index} onChangeIndex={this.handleChangeIndex} /></Hideen>
         </div>
+        <BodyIS />
         <Button variant="contained" color="primary" onClick={this.handleClick}>
           index-page
         </Button>
