@@ -67,8 +67,9 @@ function Body() {
                 <p styleName="body-p" key={i}>{o}</p>
               )
             })}
-            <p>
+            <p style={{position:'relative'}}>
               <Button variant="contained" color="primary" href="#/about" styleName="body-button">查看更多</Button>
+              <span styleName="moreline"></span>
             </p>
             <img src={require('../../assets/images/201703031544534453.jpg')} alt="" styleName="body-img" />
           </div>
