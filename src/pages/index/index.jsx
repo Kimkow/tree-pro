@@ -57,7 +57,8 @@ function Body() {
       <Hideen smDown>
         <div styleName="pd-10 about">
           <div styleName="about-left">
-            <img src={require('../../assets/images/icont_tip1.jpg')} alt=""/>
+            <div styleName="line"></div>
+            <img src={require('../../assets/images/icont_tip1.jpg')} alt="" />
             <h1 styleName="body-h1">公司<span>简介</span></h1>
           </div>
           <div styleName="about-right">
@@ -67,11 +68,47 @@ function Body() {
                 <p styleName="body-p" key={i}>{o}</p>
               )
             })}
-            <p style={{position:'relative'}}>
+            <p style={{ position: 'relative' }}>
               <Button variant="contained" color="primary" href="#/about" styleName="body-button">查看更多</Button>
               <span styleName="moreline"></span>
             </p>
             <img src={require('../../assets/images/201703031544534453.jpg')} alt="" styleName="body-img" />
+          </div>
+        </div>
+        <div styleName="white-body project">
+          <img src={require('../../assets/images/201703031549554955.jpg')} alt="" styleName="project-left" />
+          <div styleName="project-right">
+            <img src={require('../../assets/images/icont_tip2.jpg')} alt="" />
+            <h1 styleName="body-h1">工程<span>系列</span></h1>
+            <div styleName="line" style={{ marginLeft: '20px' }}></div>
+          </div>
+          <div styleName="project-middle">
+            <p style={{ textAlign: 'center' }}>
+              <Button onClick={() => { handleChangeIndex(index - 1) }} variant="contained" disabled={index === 0} color="primary" styleName="body-button" style={{ marginRight: '10px' }}>
+                <LeftIcon />
+              </Button>
+              <Button onClick={() => { handleChangeIndex(index + 1) }} variant="contained" disabled={index === (data.length - 1)} color="primary" styleName="body-button">
+                <RightIcon />
+              </Button>
+            </p>
+            <SwipeableViews styleName="banner-box" index={index} onChangeIndex={handleChangeIndex}>
+              {data.map((item, index) => {
+                let projectUrl = '/others/object'
+                let subTitle = '';
+                if (item.subName) {
+                  subTitle = (<span styleName="sub-title"><br />{item.subName}</span>);
+                }
+                return (
+                  <div key={index} styleName="project-group">
+                    <img src={require('../../assets/images/project' + item.link + '.jpg')} alt={item.name} />
+                    <a href={'#' + projectUrl + item.link} styleName="project-middle-title">{item.name}</a>
+                    {subTitle}
+                    <p dangerouslySetInnerHTML={{__html: item.text}} />
+                    <p><Button variant="contained" color="primary" href={'#' + projectUrl + item.link} styleName="body-button">查看更多</Button></p>
+                  </div>
+                )
+              })}
+            </SwipeableViews>
           </div>
         </div>
       </Hideen>
@@ -102,10 +139,14 @@ function Body() {
           <SwipeableViews styleName="banner-box" index={index} onChangeIndex={handleChangeIndex}>
             {data.map((item, index) => {
               let projectUrl = '/others/object'
+              let subTitle = '';
+              if (item.subName) {
+                subTitle = (<span styleName="sub-title">{item.subName}<br /></span>);
+              }
               return (
                 <div key={index} styleName="project-group">
                   <img src={require('../../assets/images/project' + item.link + '.jpg')} alt={item.name} />
-                  <p>{item.name}<br /><Button variant="contained" color="primary" href={'#' + projectUrl + item.link} styleName="body-button">查看更多</Button></p>
+                  <p>{item.name}<br />{subTitle}<Button variant="contained" color="primary" href={'#' + projectUrl + item.link} styleName="body-button">查看更多</Button></p>
                 </div>
               )
             })}
@@ -132,7 +173,7 @@ class Index extends Component {
   render() {
     const BannerSwiperIS = CSSModules(BannerSwiper, IS)
     const menuName = this.props.location.pathname
-    const BodyIS = CSSModules(Body, IS,{ "allowMultiple": true })
+    const BodyIS = CSSModules(Body, IS, { "allowMultiple": true })
     return (
       <div className="index-page" >
         <Hideen smDown>
