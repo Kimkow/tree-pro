@@ -7,15 +7,17 @@ import { Link } from "react-router-dom";
 import TreeMenu from '../../components/menu';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
+import AddIcon from '@material-ui/icons/AddCircleOutline';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
 import indexData from './indexData';
 import IS from './index.styl'
 import banner1 from '../../assets/images/20170303110423423.jpg';
 import banner2 from '../../assets/images/20170303110443443.jpg';
 import banner3 from '../../assets/images/20170303110451451.jpg';
 import titleImg from '../../assets/images/201703031135283528.png';
-
 const bannerList = [banner1, banner2, banner3];
-
+// 轮播图
 function BannerSwiper() {
   const [index, setIndex] = useState(0);
 
@@ -44,13 +46,43 @@ function BannerSwiper() {
     </div>
   );
 }
-
+const miaomuItems = [
+  { name: '苗木事业部', image: '0', link: '/' },
+  { name: '海南东方苗场', image: '1', link: '/' },
+  { name: '四季百和中山苗场', image: '2', link: '/' },
+  { name: '安徽肥东苗场', image: '3', link: '/' },
+  { name: '安徽六安苗场', image: '4', link: '/' },
+  { name: '湖北梅川苗场', image: 'nopic', link: '/' },
+  { name: '江西舜德苗场', image: 'nopic', link: '/' },
+  { name: '苗木系列', image: '7', link: '/' }
+];
+const miaomuItemPc = [];
+for (let i = 0; i < 3; i++) {
+  let children = [];
+  if (miaomuItems[i]) {
+    children.push(miaomuItems[i])
+  }
+  if (miaomuItems[i + 1]) {
+    children.push(miaomuItems[i + 1])
+  }
+  if (miaomuItems[i + 2]) {
+    children.push(miaomuItems[i + 2])
+  }
+  miaomuItemPc.push(children);
+}
+// 中间主体
 function Body() {
   const [index, setIndex] = useState(0);
   const data = indexData.projectData;
-
+  const [pcIndex, setPcIndex] = useState(0);
+  const [moblieIndex, setMoblieIndex] = useState(0);
   function handleChangeIndex(index) {
     setIndex(index);
+  }
+
+  function handleChangeMiaoMuIndex(index, type) {
+    let fns = [setPcIndex, setMoblieIndex]
+    fns[type](index)
   }
   return (
     <div styleName='body'>
@@ -103,12 +135,56 @@ function Body() {
                     <img src={require('../../assets/images/project' + item.link + '.jpg')} alt={item.name} />
                     <a href={'#' + projectUrl + item.link} styleName="project-middle-title">{item.name}</a>
                     {subTitle}
-                    <p dangerouslySetInnerHTML={{__html: item.text}} />
+                    <p dangerouslySetInnerHTML={{ __html: item.text }} />
                     <p><Button variant="contained" color="primary" href={'#' + projectUrl + item.link} styleName="body-button">查看更多</Button></p>
                   </div>
                 )
               })}
             </SwipeableViews>
+          </div>
+        </div>
+        <div styleName="pd-10 about">
+          <div styleName="about-left">
+            <div styleName="line"></div>
+            <img src={require('../../assets/images/icont_tip3.jpg')} alt="" />
+            <h1 styleName="body-h1">苗木<span>系列</span></h1>
+          </div>
+          <div styleName="about-right">
+            <SwipeableViews enableMouseEvents styleName="banner-box" index={moblieIndex} onChangeIndex={(e) => { handleChangeMiaoMuIndex(e, 0) }}>
+              {
+                miaomuItemPc.map((o, i) => {
+                  let children = o.map((item, keys) => {
+                    return (
+                      <ButtonBase focusRipple key={keys} styleName="miaomu-group">
+                        <span styleName="miaomu-pic" style={{ backgroundImage: `url(${require('../../assets/images/miaomu/' + item.image + '.jpg')})` }} />
+                        <div styleName="miaomu-mask">
+                          <Typography
+                            component="span"
+                            variant="subtitle1"
+                            color="inherit"
+                          >
+                            <span styleName="miaomu-title">{item.name}</span>
+                            <a href={`#${item.link}`}><AddIcon styleName="miaomu-add" /></a>
+                          </Typography>
+                        </div>
+                      </ButtonBase>
+                    )
+                  })
+                  return (
+                    <div key={i} style={{ maxWidth: '1014px', margin: '0 auto' }}>{children}</div>
+                  )
+                })
+              }
+            </SwipeableViews>
+            <div styleName="miaomu-pagination">
+              {
+                miaomuItemPc.map((o, i) => {
+                  return (
+                    <span key={i} styleName={i === moblieIndex ? 'active' : ''} onClick={() => { handleChangeMiaoMuIndex(i, 0) }}></span>
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
       </Hideen>
@@ -152,6 +228,39 @@ function Body() {
             })}
           </SwipeableViews>
         </div>
+        <div styleName="pd-10">
+          <h1 styleName="body-h1">苗木<span>系列</span></h1>
+          <SwipeableViews enableMouseEvents styleName="banner-box" index={pcIndex} onChangeIndex={(e) => { handleChangeMiaoMuIndex(e, 0) }}>
+            {
+              miaomuItems.map((o, i) => {
+                return (
+                  <ButtonBase focusRipple key={i} styleName="miaomu-group mobile">
+                    <span styleName="miaomu-pic" style={{ backgroundImage: `url(${require('../../assets/images/miaomu/' + o.image + '.jpg')})` }} />
+                    <div styleName="miaomu-mask">
+                      <Typography
+                        component="span"
+                        variant="subtitle1"
+                        color="inherit"
+                      >
+                        <span styleName="miaomu-title">{o.name}</span>
+                        <a href={`#${o.link}`}><AddIcon styleName="miaomu-add" /></a>
+                      </Typography>
+                    </div>
+                  </ButtonBase>
+                )
+              })
+            }
+          </SwipeableViews>
+          <div styleName="miaomu-pagination">
+            {
+              miaomuItems.map((o, i) => {
+                return (
+                  <span key={i} styleName={i === pcIndex ? 'active' : ''} onClick={() => { handleChangeMiaoMuIndex(i, 0) }}></span>
+                )
+              })
+            }
+          </div>
+        </div>
       </Hideen>
     </div>
   )
@@ -162,11 +271,6 @@ class Index extends Component {
     super(props);
     this.state = {
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.history.push('/others');
   }
   componentDidMount() {
   }
@@ -185,9 +289,6 @@ class Index extends Component {
         </Hideen>
         <BannerSwiperIS />
         <BodyIS />
-        <Button variant="contained" color="primary" onClick={this.handleClick}>
-          index-page
-        </Button>
       </div>
     );
   }
