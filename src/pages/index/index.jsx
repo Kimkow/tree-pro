@@ -17,6 +17,7 @@ import banner2 from '../../assets/images/20170303110443443.jpg';
 import banner3 from '../../assets/images/20170303110451451.jpg';
 import titleImg from '../../assets/images/201703031135283528.png';
 const bannerList = [banner1, banner2, banner3];
+const menuName = 'index'
 // 轮播图
 function BannerSwiper() {
   const [index, setIndex] = useState(0);
@@ -276,7 +277,6 @@ class Index extends Component {
   }
   render() {
     const BannerSwiperIS = CSSModules(BannerSwiper, IS)
-    const menuName = this.props.location.pathname
     const BodyIS = CSSModules(Body, IS, { "allowMultiple": true })
     return (
       <div className="index-page" >

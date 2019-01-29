@@ -10,13 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from "react-router-dom";
 
 const options = [
-  { name: '首页', link: '/' },
-  { name: '关于四季青', link: '/others/about' },
-  { name: '工程系列', link: '/others/object' },
-  { name: '苗木系列', link: '/others/miaomu' },
-  { name: '新闻资讯', link: '/others/news' },
-  { name: '人力资源', link: '/others/peoples' },
-  { name: '联系我们', link: '/others/callUs' }
+  { name: '首页', link: '/' ,pathname:'index'},
+  { name: '关于四季青', link: '/others/about/0',pathname:'about' },
+  { name: '工程系列', link: '/others/object',pathname:'object' },
+  { name: '苗木系列', link: '/others/miaomu/0' ,pathname:'miaomu'},
+  { name: '新闻资讯', link: '/others/news' ,pathname:'news'},
+  { name: '人力资源', link: '/others/peoples',pathname:'peoples' },
+  { name: '联系我们', link: '/others/callUs',pathname:'callUs' }
 ];
 
 const ITEM_HEIGHT = 48;
@@ -48,7 +48,7 @@ class TreeMenu extends Component {
 
     const menuList = options.map((option, index) => {
       let activeMenu = '';
-      if (option.link === this.props.menuName) {
+      if (option.pathname === this.props.menuName) {
         activeMenu = 'on'
       }
       return (
