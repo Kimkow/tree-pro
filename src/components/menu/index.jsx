@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import CS from '../assets/style/common.styl';
+import MS from './menu.styl';
 import IconButton from '@material-ui/core/IconButton';
 import Hideen from '@material-ui/core/Hidden';
 import Menu from '@material-ui/core/Menu';
@@ -104,4 +104,4 @@ class TreeMenu extends Component {
 TreeMenu.propTypes = {
   menuName: PropTypes.string
 }
-export default CSSModules(TreeMenu, CS, { "allowMultiple": true });
+export default CSSModules(TreeMenu, MS, { "allowMultiple": true });

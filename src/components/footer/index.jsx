@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import Hideen from '@material-ui/core/Hidden';
 import { HashRouter, Link } from "react-router-dom";
-// import PropTypes from 'prop-types'
-import RQImg from '../assets/images/201703031157165716.jpg'
-import CS from '../assets/style/common.styl'
-import callUs from '../pages/titleData'
+import TopIcon from '@material-ui/icons/KeyboardTab';
+import RQImg from '../../assets/images/201703031157165716.jpg'
+import FS from './footer.styl'
+import callUs from '../../pages/titleData'
 
 const links = [
   { name: '网站地图', link: '/' },
@@ -39,12 +39,17 @@ const footerHeaders = Object.keys(callUs).map((key, index) => {
 class Footer extends Component {
   componentDidMount() {
   }
+  toTop(){
+    window.scrollTo(0,0)
+    return false;
+  }
   render() {
     return (
       <HashRouter>
-        <div className="footer-container">
+        <div styleName="footer-container">
+          <TopIcon styleName="footer-top" onClick={this.toTop}/>
           <Hideen smDown>
-            <ul className={CS.footer} styleName="footer-header">{footerHeaders}</ul>
+            <ul styleName="footer-header">{footerHeaders}</ul>
             <div styleName='footer-body'>
               <ul>{linksItmes}</ul>
               <div styleName='QR-box'>
@@ -66,4 +71,4 @@ class Footer extends Component {
     );
   }
 }
-export default CSSModules(Footer, CS, { "allowMultiple": true });
+export default CSSModules(Footer, FS, { "allowMultiple": true });

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Hideen from '@material-ui/core/Hidden';
 import Miaomu from '../miaomu';
 import CallUs from '../callus';
 import About from '../about';
