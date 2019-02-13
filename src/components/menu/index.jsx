@@ -11,9 +11,9 @@ import { Link } from "react-router-dom";
 
 const options = [
   { name: '首页', link: '/' ,pathname:'index'},
-  { name: '关于四季青', link: '/others/about/0',pathname:'about' },
+  { name: '关于四季青', link: '/others/about/1',pathname:'about' },
   { name: '工程系列', link: '/others/object',pathname:'object' },
-  { name: '苗木系列', link: '/others/miaomu/0' ,pathname:'miaomu'},
+  { name: '苗木系列', link: '/others/miaomu/1' ,pathname:'miaomu'},
   { name: '新闻资讯', link: '/others/news' ,pathname:'news'},
   { name: '人力资源', link: '/others/peoples',pathname:'peoples' },
   { name: '联系我们', link: '/others/callUs',pathname:'callUs' }
