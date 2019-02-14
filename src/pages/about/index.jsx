@@ -4,6 +4,7 @@ import MinMenu from '../../components/minMenu';
 import Hideen from '@material-ui/core/Hidden';
 import AS from './about.styl';
 import contentText from './text';
+import Pagination from '../../components/pagination';
 
 const minMenuData = [
   { name: '公司简介', value: 1 },
@@ -23,6 +24,20 @@ const minMenuData = [
   { name: '企业文化', value: 11 },
   { name: '历史沿革', value: 12 },
 ];
+
+function Valuea() {
+  
+  function handleChangePage(){
+    console.log(1234);
+  }
+  return (
+    <div styleName="text-container">
+      1234
+      <Pagination total="total" pageSize="pageSize" page="page" currentChange={handleChangePage} />
+    </div>
+  )
+}
+
 class About extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +45,7 @@ class About extends Component {
       isChange: true
     }
   }
+
   componentDidMount() {
   }
   render() {
@@ -38,7 +54,8 @@ class About extends Component {
     let activeIndex = this.props.match.params.id;
 
     let content = '';
-    if (activeIndex < 10) {
+    let valueCount = parseInt(activeIndex);
+    if (valueCount < 10) {
       const contentObj = contentText[activeIndex];
       let img = '';
       if (contentObj.url) {
@@ -56,8 +73,9 @@ class About extends Component {
           {img}
         </div>
       )
+    } else if (valueCount === 10) {
+      content =  CSSModules(Valuea, AS, { "allowMultiple": true })
     }
-
     return (
       <div styleName="container">
         <Hideen smDown>
