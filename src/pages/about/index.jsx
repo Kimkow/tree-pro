@@ -6,7 +6,7 @@ import AS from './about.styl';
 import contentText from './text';
 import Pagination from '../../components/pagination';
 
-console.log('测试下！！！')
+console.log('测试提交代码！！！')
 const minMenuData = [
   { name: '公司简介', value: 1 },
   {
