@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import CU from './callus.styl';
 import BMap from 'BMap'
+import MinMenu from '../../components/minMenu';
 
 let map;
 
@@ -61,6 +62,11 @@ function createMap() {
   }
 }
 
+const minMenuData = [
+  { name: '联系我们', value: 1 },
+  { name: '留言专区', value: 2 },
+];
+
 class CallUs extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +80,16 @@ class CallUs extends Component {
   }
   render() {
     return (
-      <div className="index-page">
+      <div styleName="index-page">
+      <div styleName="menu">
+            <div styleName="img-group">
+              <img src={require('../../assets/images/callus/callus_menu.png')} alt="" />
+              <img src={require('../../assets/images/icont_tip_bg2.png')} alt="" />
+            </div>
+            <MinMenu listData={minMenuData} />
+          </div>
+        <div styleName="content">
+              
         <div styleName="phone-number">
           <img src={require("../../assets/images/201703031532113211.jpg")} alt="phone" />
           <p>电话 : 0755-82403817</p>
@@ -89,6 +104,7 @@ class CallUs extends Component {
         </div>
         <div className="mapContainer">
           <div id="mapContainer" style={{width:'100%',height:'485px'}}></div>
+        </div>
         </div>
       </div>
     );
