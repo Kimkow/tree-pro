@@ -6,7 +6,7 @@ import AS from './about.styl';
 import contentText from './text';
 import Pagination from '../../components/pagination';
 
-console.log('测试下！！！')
+
 const minMenuData = [
   { name: '公司简介', value: 1 },
   {
@@ -26,17 +26,47 @@ const minMenuData = [
   { name: '历史沿革', value: 12 },
 ];
 
-function Valuea() {
-  
-  function handleChangePage(){
+function OtherContent10() {
+
+  function handleChangePage() {
     console.log(1234);
   }
   return (
     <div styleName="text-container">
-      1234
-      <Pagination total="total" pageSize="pageSize" page="page" currentChange={handleChangePage} />
+      <Pagination total={14} pageSize={6} currentChange={handleChangePage} />
     </div>
   )
+}
+function NormalContent(props) {
+  const { activeIndex } = props;
+  const contentObj = contentText[activeIndex];
+  let img = '';
+  if (contentObj.url) {
+    img = <img src={require(`../../assets/images/${contentObj.url}`)} alt="" />
+  }
+  return (
+    <div styleName="text-container">
+      <div styleName="line"></div>
+      <h1>{contentObj.h1}</h1>
+      {
+        contentObj.list.map((o, i) => {
+          return (<p key={i}>{o}</p>)
+        })
+      }
+      {img}
+    </div>
+  )
+}
+function ContentText(props) {
+  let { activeIndex } = props;
+  let valueCount = parseInt(activeIndex);
+  const NormalContentAS = CSSModules(NormalContent, AS, { "allowMultiple": true });
+  const OtherContent10AS = CSSModules(OtherContent10, AS, { "allowMultiple": true });
+  if (valueCount < 10) {
+    return <NormalContentAS activeIndex={activeIndex}/>
+  }else if(valueCount === 10){
+    return (<OtherContent10AS activeIndex={activeIndex}/>)
+  }
 }
 
 class About extends Component {
@@ -53,30 +83,7 @@ class About extends Component {
     const { isChange } = this.state;
     let path = this.props.match.path.split(':')[0];
     let activeIndex = this.props.match.params.id;
-
-    let content = '';
-    let valueCount = parseInt(activeIndex);
-    if (valueCount < 10) {
-      const contentObj = contentText[activeIndex];
-      let img = '';
-      if (contentObj.url) {
-        img = <img src={require(`../../assets/images/${contentObj.url}`)} alt="" />
-      }
-      content = (
-        <div styleName="text-container">
-          <div styleName="line"></div>
-          <h1>{contentObj.h1}</h1>
-          {
-            contentObj.list.map((o, i) => {
-              return (<p key={i}>{o}</p>)
-            })
-          }
-          {img}
-        </div>
-      )
-    } else if (valueCount === 10) {
-      content =  CSSModules(Valuea, AS, { "allowMultiple": true })
-    }
+    
     return (
       <div styleName="container">
         <Hideen smDown>
@@ -91,7 +98,7 @@ class About extends Component {
         <Hideen mdUp>
           <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} isChange={isChange} />
         </Hideen>
-        {content}
+        <ContentText activeIndex={activeIndex}/>
       </div>
     )
   }
