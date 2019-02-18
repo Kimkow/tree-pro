@@ -79,6 +79,8 @@ class CallUs extends Component {
     createMap();
   }
   render() {
+    let path = this.props.match.path.split(':')[0];
+    let activeIndex = this.props.match.params.id;
     return (
       <div styleName="index-page">
       <div styleName="menu">
@@ -86,7 +88,7 @@ class CallUs extends Component {
               <img src={require('../../assets/images/callus/callus_menu.png')} alt="" />
               <img src={require('../../assets/images/icont_tip_bg2.png')} alt="" />
             </div>
-            <MinMenu listData={minMenuData} />
+            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
           </div>
         <div styleName="content">
               

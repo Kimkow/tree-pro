@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import Hideen from '@material-ui/core/Hidden';
-import { HashRouter, Link } from "react-router-dom";
 import TopIcon from '@material-ui/icons/KeyboardTab';
 import RQImg from '../../assets/images/201703031157165716.jpg'
 import FS from './footer.styl'
@@ -16,14 +15,14 @@ const links = [
 
 const linksItmes = links.map((o, index) => {
   return (
-    <li key={index}><Link to={o.link} replace>{o.name}</Link></li>
+    <li key={index}><a href={o.link}>{o.name}</a></li>
   )
 });
 
 const footerHeaders = Object.keys(callUs).map((key, index) => {
   const ddItems = callUs[key].map((o, k) => {
     return (
-      <dd key={k}><Link to={o.link} replace>{o.name}</Link></dd>
+      <dd key={k}><a href={o.link}>{o.name}</a></dd>
     );
   });
   return (
@@ -45,12 +44,12 @@ class Footer extends Component {
   }
   render() {
     return (
-      <HashRouter>
-        <div styleName="footer-container">
-          <TopIcon styleName="footer-top" onClick={this.toTop}/>
-          <Hideen smDown>
-            <ul styleName="footer-header">{footerHeaders}</ul>
-            <div styleName='footer-body'>
+      <div styleName="footer-container">
+        <TopIcon styleName="footer-top" onClick={this.toTop}/>
+        <Hideen smDown>
+          <ul styleName="footer-header">{footerHeaders}</ul>
+          <div styleName='footer-body'>
+            <div styleName="footer-body-content">
               <ul>{linksItmes}</ul>
               <div styleName='QR-box'>
                 <p>扫一扫<br />关注我们了解最新资讯</p>
@@ -58,16 +57,18 @@ class Footer extends Component {
               </div>
               <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
             </div>
-          </Hideen>
-          <Hideen mdUp>
-            <div styleName='footer-body mobile'>
+          </div>
+        </Hideen>
+        <Hideen mdUp>
+          <div styleName='footer-body mobile'>
+            <div styleName="footer-body-content">
               <ul>{linksItmes}</ul>
               <p>Copyright © 2017 深圳市四季青园林股份有限公司 All Rights Reserved. Designed by Wanhu</p>
               <img src={RQImg} alt="二维码" />
             </div>
-          </Hideen>
-        </div>
-      </HashRouter>
+          </div>
+        </Hideen>
+      </div>
     );
   }
 }

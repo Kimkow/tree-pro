@@ -1,5 +1,6 @@
 .footer-container {
   position: relative;
+  background-color: #c0a264;
 }
 
 .footer-top {
@@ -15,14 +16,14 @@
 }
 
 .footer-header {
+  max-width 1200px
   height: 240px;
   padding: 0 2vw;
-  background-color: #c0a264;
+  margin 0 auto;
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
   text-align: center;
-  margin: 0;
 
   >li {
     flex: 1 0;
@@ -49,7 +50,9 @@
         font-size: 12px;
 
         a {
-          &:visited {
+          color: #ece3d1;
+          text-decoration none
+          &:visited,&:active {
             color: #ece3d1;
           }
 
@@ -67,82 +70,83 @@
   border-top: 1px solid transparent;
   min-height: 113px;
   background: #fff url('../../assets/images/copyright_bg.jpg') bottom center no-repeat;
-  // width: 100vw;
   position: relative;
   color: #747474;
   font-size: 12px;
 
-  >p, >ul {
-    padding: 0 10px;
-    line-height: 24px;
-    margin: 0;
-  }
-
-  >p {
-  }
-
-  >ul {
-    list-style: none;
-    margin-top: 40px;
-
-    li {
-      display: inline-block;
-      position: relative;
-      line-height: 24px;
-      padding: 0 8px;
-
-      a {
-        text-decoration: none;
-        color: #747474;
-
-        &:visited {
-          color: #747474;
-        }
-
-        &:hover {
-          color: #c0a264;
-        }
-      }
-
-      &:not(:last-child) {
-        &:before {
-          content: '';
-          position: absolute;
-          top: 25%;
-          right: 0;
-          width: 1px;
-          height: 50%;
-          background-color: #747474;
-        }
-      }
-    }
-  }
-
-  .QR-box {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-
-    >img {
-      float: right;
-    }
-
-    >p {
-      text-align: right;
-      float: left;
-      width: 190px;
-      padding-right: 15px;
-      background: url('../../assets/images/code_bg.jpg') right center no-repeat;
-      margin-right: 10px;
-    }
-  }
-
-  &.mobile {
+  .footer-body-content{
+    position: relative;
+    max-width 1200px
+    margin 0 auto
     >p, >ul {
+      padding: 0 10px;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    >ul {
+      list-style: none;
+      margin-top: 40px;
+
+      li {
+        display: inline-block;
+        position: relative;
+        line-height: 24px;
+        padding: 0 8px;
+
+        a {
+          text-decoration: none;
+          color: #747474;
+
+          &:visited {
+            color: #747474;
+          }
+
+          &:hover {
+            color: #c0a264;
+          }
+        }
+
+        &:not(:last-child) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            right: 0;
+            width: 1px;
+            height: 50%;
+            background-color: #747474;
+          }
+        }
+      }
+    }
+
+    .QR-box {
+      position: absolute;
+      top: -15px;
+      right: 10px;
+
+      >img {
+        float: right;
+      }
+
+      >p {
+        text-align: right;
+        float: left;
+        width: 190px;
+        padding-right: 15px;
+        background: url('../../assets/images/code_bg.jpg') right center no-repeat;
+        margin-right: 10px;
+      }
+    }
+
+  }
+  &.mobile {
+    p, ul {
       text-align: center;
     }
 
-    >img {
+    img {
       display: block;
       margin: 0 auto;
     }

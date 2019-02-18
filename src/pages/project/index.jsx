@@ -30,15 +30,16 @@ function NormalContent(props) {
   }
   return (
     <div styleName="text-container">
+      <div styleName="line"></div>
       {
         activeList.map((o, i) => {
           return (
             <div styleName="list-group" key={i}>
-              <img styleName="img" src={require("../../assets/images/project/" + o.value + '.jpg')} alt="" />
+              <img styleName="img" src={require("../../assets/images/project/" + o.url)} alt="" />
               <div styleName="content">
                 <h1>{o.title}</h1>
                 <p>{o.text}</p>
-                <Button variant="contained" color="primary" styleName="body-button">查看详情>></Button>
+                <Button variant="contained" color="primary" styleName="body-button">查看详情</Button>
               </div>
             </div>
           )
@@ -64,11 +65,9 @@ class Project extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isChange: true
     }
   }
   render() {
-    const { isChange } = this.state;
     let path = this.props.match.path.split(':')[0];
     let activeIndex = this.props.match.params.id;
 
@@ -80,11 +79,11 @@ class Project extends Component {
               <img src={require('../../assets/images/project/menu.png')} alt="" />
               <img src={require('../../assets/images/icont_tip_bg2.png')} alt="" />
             </div>
-            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} isChange={isChange} />
+            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex}/>
           </div>
         </Hideen>
         <Hideen mdUp>
-          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} isChange={isChange} />
+          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex}/>
         </Hideen>
         <ContentText activeIndex={activeIndex} />
       </div>

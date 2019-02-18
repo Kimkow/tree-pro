@@ -16,7 +16,7 @@ const Others = (router) => {
       <TreeMenu menuName={menuType} />
       <div styleName="other-title-bg" style={{backgroundImage:`url(${require(`../../assets/images/others/${menuType}.jpg`)})`}}/>
       <Route path={`${match.url}/miaomu/:id`} component={Miaomu} />
-      <Route path={`${match.url}/callUs`} component={CallUs} />
+      <Route path={`${match.url}/callUs/:id`} component={CallUs} />
       <Route path={`${match.url}/about/:id`} component={About} />
       <Route path={`${match.url}/project/:id`} component={Project} />
     </div>

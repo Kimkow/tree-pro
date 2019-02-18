@@ -18,6 +18,9 @@
 .container {
     padding: 60px 0;
     overflow: hidden;
+    width 100%
+    max-width 1200px;
+    margin 0 auto
 }
 
 .menu {
@@ -46,23 +49,14 @@
     position: relative;
 }
 
-.body-button {
-    color: white;
-    background-color: #c0a264;
-    outline: none;
-
-    &:hover {
-        background-color: #c0a264;
-        border-color: #c0a264;
-    }
-
-    &:active {
-        box-shadow: none;
-        background-color: #c0a264;
-        border-color: #c0a264;
-    }
+.line {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    width: 1px;
+    background: url('../../assets/images/good_list_bg.png') top center repeat-y;
+    height: 70%;
 }
-
 .list-group {
     border: 1px solid #f0e6d0;
     margin-bottom: 20px;
@@ -80,7 +74,44 @@
     }
 
     .content {
+        width calc(100% - 258px);
+        box-sizing border-box
+        padding-left 30px
         float: left;
+
+        h1 {
+            display: block;
+            width: 80%;
+            color: #666666;
+            font-size: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 23px 0 10px;
+            font-weight normal
+        }
+        p {
+            color: #999999;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .body-button {
+            color: white;
+            background-color: #c0a264;
+            outline: none;
+
+            &:hover {
+                background-color: #c0a264;
+                border-color: #c0a264;
+            }
+
+            &:active {
+                box-shadow: none;
+                background-color: #c0a264;
+                border-color: #c0a264;
+            }
+        }
     }
 }
 

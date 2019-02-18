@@ -16,7 +16,7 @@ const options = [
   { name: '苗木系列', link: '/others/miaomu/1' ,pathname:'miaomu'},
   { name: '新闻资讯', link: '/others/news' ,pathname:'news'},
   { name: '人力资源', link: '/others/peoples',pathname:'peoples' },
-  { name: '联系我们', link: '/others/callUs',pathname:'callUs' }
+  { name: '联系我们', link: '/others/callUs/1',pathname:'callUs' }
 ];
 
 const ITEM_HEIGHT = 48;

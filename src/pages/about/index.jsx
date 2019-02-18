@@ -148,11 +148,9 @@ class About extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isChange: true
     }
   }
   render() {
-    const { isChange } = this.state;
     let path = this.props.match.path.split(':')[0];
     let activeIndex = this.props.match.params.id;
 
@@ -164,11 +162,11 @@ class About extends Component {
               <img src={require('../../assets/images/about/menu.png')} alt="" />
               <img src={require('../../assets/images/icont_tip_bg2.png')} alt="" />
             </div>
-            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} isChange={isChange} />
+            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
           </div>
         </Hideen>
         <Hideen mdUp>
-          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} isChange={isChange} />
+          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
         </Hideen>
         <ContentText activeIndex={activeIndex} />
       </div>

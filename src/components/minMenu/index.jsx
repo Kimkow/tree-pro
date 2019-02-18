@@ -73,7 +73,6 @@ const MinMenu = (props) => {
 MinMenu.propTypes = {
   listData: PropTypes.array,
   menuPath: PropTypes.string,
-  isChagnge: PropTypes.bool,
   activeIndex: PropTypes.string
 }
 
