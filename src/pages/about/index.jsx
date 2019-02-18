@@ -71,7 +71,7 @@ function OtherContent10() {
           })
         }
       </div>
-      <Pagination style={{}} total={14} pageSize={6} currentChange={handleChangePage} />
+      <Pagination total={14} pageSize={6} currentChange={handleChangePage} />
       <MaskBoxAS />
     </div>
   )
