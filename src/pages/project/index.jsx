@@ -6,7 +6,6 @@ import Hideen from '@material-ui/core/Hidden';
 import PS from './project.styl';
 import contentText from './text';
 import Pagination from '../../components/pagination';
-import ScrollArea from 'react-scrollbar';
 
 const minMenuData = [
   { name: '工程施工', value: 1 },
@@ -21,13 +20,11 @@ function DefaultContent() {
 function NormalContent(props) {
   const { activeIndex } = props;
   const contentObj = contentText.minList[activeIndex];
-  const [activePage, setActivePage] = useState(1);
-  const [activeBox, setActiveBox] = useState(null);
   const [activeList, setActiveList] = useState(contentObj[0]);
   function handleChangePage(page) {
-    setActivePage(page);
     setActiveList(contentObj[parseInt(page - 1)])
   }
+  
   return (
     <div styleName="text-container">
       <div styleName="line"></div>
@@ -39,7 +36,7 @@ function NormalContent(props) {
               <div styleName="content">
                 <h1>{o.title}</h1>
                 <p>{o.text}</p>
-                <Button variant="contained" color="primary" styleName="body-button">查看详情</Button>
+                <Button variant="contained" component='a' href={`#/others/project/${activeIndex}/${o.value}`} color="primary" styleName="body-button">查看详情</Button>
               </div>
             </div>
           )
@@ -69,8 +66,9 @@ class Project extends Component {
   }
   render() {
     let path = this.props.match.path.split(':')[0];
-    let activeIndex = this.props.match.params.id;
-
+    let activeIndex = this.props.match.params.id; // 当前子菜单ID
+    let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), ''); //详情ID
+    console.log(childId);
     return (
       <div styleName="container">
         <Hideen smDown>
@@ -79,13 +77,16 @@ class Project extends Component {
               <img src={require('../../assets/images/project/menu.png')} alt="" />
               <img src={require('../../assets/images/icont_tip_bg2.png')} alt="" />
             </div>
-            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex}/>
+            <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
           </div>
         </Hideen>
         <Hideen mdUp>
-          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex}/>
+          <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
         </Hideen>
-        <ContentText activeIndex={activeIndex} />
+        {
+          childId ? <div>1234</div> : <ContentText activeIndex={activeIndex} />
+        }
+
       </div>
     )
   }

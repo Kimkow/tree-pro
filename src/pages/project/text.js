@@ -26,6 +26,13 @@ const text = {
         {value:'7',url:'7.jpg',title:'北京孔子学院总部',text:'项目地址：北京市西城区物业类别：学校建筑类型：现代简约开  发  商：北教育部对外汉语教学发展中心园林单位：深圳市四季青园林股份有限公司	国家汉办是中国教育部直属事业单位...'},
       ]
     ]
+  },
+  detailList:{
+    '1': [
+      [
+        {head:'',title:'',images:[],text:''},
+      ]
+    ]
   }
 };
 export default text;
