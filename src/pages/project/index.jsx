@@ -6,6 +6,7 @@ import Hideen from '@material-ui/core/Hidden';
 import PS from './project.styl';
 import contentText from './text';
 import Pagination from '../../components/pagination';
+import Detail from '../../components/detail';
 
 const minMenuData = [
   { name: '工程施工', value: 1 },
@@ -46,29 +47,33 @@ function NormalContent(props) {
     </div>
   )
 }
+
 function ContentText(props) {
   let { activeIndex } = props;
   let valueCount = parseInt(activeIndex);
-  const DefaultAS = CSSModules(DefaultContent, PS, { "allowMultiple": true });
-  const NormalContentAS = CSSModules(NormalContent, PS, { "allowMultiple": true });
+  const DefaultPS = CSSModules(DefaultContent, PS, { "allowMultiple": true });
+  const NormalContentPS = CSSModules(NormalContent, PS, { "allowMultiple": true });
   if (valueCount === 1 || valueCount === 4) {
-    return <NormalContentAS activeIndex={activeIndex} />;
+    return <NormalContentPS activeIndex={activeIndex} />;
   } else {
-    return <DefaultAS />
+    return <DefaultPS />
   }
 }
 
 class Project extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
     }
   }
   render() {
     let path = this.props.match.path.split(':')[0];
     let activeIndex = this.props.match.params.id; // 当前子菜单ID
-    let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), ''); //详情ID
-    console.log(childId);
+    let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), '');
+    childId = childId.replace(/\//g,'');//详情ID
+    const publicSrc = `project/${activeIndex}/detail/${childId}/`;
+    let detailObj = contentText.detailList[activeIndex][childId];//详情内容
+
     return (
       <div styleName="container">
         <Hideen smDown>
@@ -84,7 +89,7 @@ class Project extends Component {
           <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
         </Hideen>
         {
-          childId ? <div>1234</div> : <ContentText activeIndex={activeIndex} />
+          childId ? <Detail detailObj={detailObj} publicSrc={publicSrc}/> : <ContentText activeIndex={activeIndex} />
         }
 
       </div>

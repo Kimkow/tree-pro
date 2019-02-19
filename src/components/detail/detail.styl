@@ -1,0 +1,124 @@
+.detail-container{
+  overflow hidden
+  width: calc(100% - 235px);
+  box-sizing: border-box;
+  padding 0 20px
+  float: left;
+  position relative
+  .detail-imgs{
+    width calc(100% - 125px)
+    float left
+    position relative
+    height 465px
+    .big{
+      width 100%
+      height 390px
+      display block
+    }
+    .small-group{
+      position absolute
+      bottom 0
+      left 0
+      background-color rgba(0,0,0,.6)
+      overflow hidden
+      width 100%
+      height 75px
+      img {
+        width 90px
+        height 54px
+        box-sizing border-box
+        cursor pointer
+        margin 10px
+        float left
+        position relative
+        &:hover {
+          border 2px solid white
+        }
+        &.on {
+          border 2px solid white
+        }
+      }
+    }
+  }
+  .header {
+    width 125px
+    height 390px
+    float left
+    background-color #f1ede4
+    position relative
+    .header-box{
+      width: 65px;
+      height: 345px;
+      position: absolute;
+      top: 30px;
+      right: 38px;
+    }
+    h1 {
+      width: 30px;
+      max-height 300px
+      color: #c0a264;
+      font-size: 30px;
+      float: left;
+      line-height: 30px;
+      text-align: center;
+      font-weight normal;
+      overflow hidden
+    }
+    p {
+      width: 30px;
+      color: #666666;
+      font-size: 18px;
+      float: right;
+      text-align: center;
+      line-height: 19px;
+      position: relative;
+      top: 5px;
+    }
+  }
+  .detail-text {
+    width 100%
+    float left
+    padding 10px
+  }
+}
+.line {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  width: 1px;
+  background: url('../../assets/images/good_list_bg.png') top center repeat-y;
+  height: 70%;
+}
+@media screen and (max-width: 960px) {
+  .detail-container{
+    width: 100%;
+    .detail-imgs{
+      width 100%
+    }
+    .header{
+      width 100%
+      height 110px
+      background-color transparent
+      .header-box {
+        width 100%
+        height 100%
+        top 0
+        left 0
+        h1 {
+          float: none;
+          width: 100%;
+          text-align: left;
+          margin: 15px 0;
+        }
+        p{
+          float: none;
+          width: 100%;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .line{
+    display none
+  }
+}
