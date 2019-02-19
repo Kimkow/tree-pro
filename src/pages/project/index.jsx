@@ -72,7 +72,11 @@ class Project extends Component {
     let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), '');
     childId = childId.replace(/\//g,'');//详情ID
     const publicSrc = `project/${activeIndex}/detail/${childId}/`;
-    let detailObj = contentText.detailList[activeIndex][childId];//详情内容
+
+    let detailObj = {};
+    if(childId) {
+      detailObj = contentText.detailList[activeIndex][childId];//详情内容
+    }
 
     return (
       <div styleName="container">
