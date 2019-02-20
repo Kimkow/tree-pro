@@ -25,10 +25,10 @@ function NormalContent(props) {
   function handleChangePage(page) {
     setActiveList(contentObj[parseInt(page - 1)])
   }
-  
+  console.log(contentObj);
   return (
     <div styleName="text-container">
-      <div styleName="line"></div>
+      <div styleName="line"/>
       {
         activeList.map((o, i) => {
           return (
