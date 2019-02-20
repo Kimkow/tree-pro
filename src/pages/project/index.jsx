@@ -25,7 +25,6 @@ function NormalContent(props) {
   function handleChangePage(page) {
     setActiveList(contentObj[parseInt(page - 1)])
   }
-  console.log(contentObj);
   return (
     <div styleName="text-container">
       <div styleName="line"/>

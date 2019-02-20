@@ -133,7 +133,7 @@ function Body() {
                 }
                 return (
                   <div key={index} styleName="project-group">
-                    <img src={require('../../assets/images/project' + item.link + '.jpg')} alt={item.name} />
+                    <img src={require('../../assets/images/project/4' + item.link + '.jpg')} alt={item.name} />
                     <a href={'#' + projectUrl + item.link} styleName="project-middle-title">{item.name}</a>
                     {subTitle}
                     <p dangerouslySetInnerHTML={{ __html: item.text }} />
@@ -222,7 +222,7 @@ function Body() {
               }
               return (
                 <div key={index} styleName="project-group">
-                  <img src={require('../../assets/images/project' + item.link + '.jpg')} alt={item.name} />
+                  <img src={require('../../assets/images/project/4' + item.link + '.jpg')} alt={item.name} />
                   <p>{item.name}<br />{subTitle}<Button variant="contained" color="primary" href={'#' + projectUrl + item.link} styleName="body-button">查看更多</Button></p>
                 </div>
               )
