@@ -1,0 +1,64 @@
+.detail-container{
+  overflow hidden
+  width: calc(100% - 235px);
+  box-sizing: border-box;
+  padding 0 20px
+  float: left;
+  position relative
+  .title {
+    color: #666666;
+    font-size: 30px;
+    line-height: 35px;
+    margin 0
+  }
+  .stip {
+    color: #999;
+    margin-top: 7px;
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+    font-size 14px
+    border-bottom: 1px solid #e9e0cf;
+    span {
+      color: #c0a264;
+    }
+  }
+  .text-header {
+    text-align center
+    font-size 24px
+    margin 14px 0
+  }
+  .text-title {
+    text-align center
+    font-size 18px
+    margin 14px 0
+  }
+  .detail-imgs{
+    img {
+      display inline-block
+      width 50%
+      max-height 600px
+    }
+  }
+}
+.line {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  width: 1px;
+  background: url('../../assets/images/good_list_bg.png') top center repeat-y;
+  height: 70%;
+}
+@media screen and (max-width: 960px) {
+  .detail-container{
+    width: 100%;
+    .detail-imgs{
+      img {
+        display block
+        width 100%
+      }
+    }
+  }
+  .line{
+    display none
+  }
+}

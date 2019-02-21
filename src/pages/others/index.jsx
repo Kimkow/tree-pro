@@ -4,6 +4,7 @@ import Miaomu from '../miaomu';
 import CallUs from '../callus';
 import About from '../about';
 import Project from '../project';
+import News from '../news';
 import TreeMenu from '../../components/menu';
 import OS from './other.styl';
 import CSSModules from 'react-css-modules';
@@ -19,6 +20,7 @@ const Others = (router) => {
       <Route path={`${match.url}/callUs/:id`} component={CallUs} />
       <Route path={`${match.url}/about/:id`} component={About} />
       <Route path={`${match.url}/project/:id`} component={Project} />
+      <Route path={`${match.url}/news/:id`} component={News} />
     </div>
   )
 };
