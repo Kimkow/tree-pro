@@ -5,6 +5,7 @@ import CallUs from '../callus';
 import About from '../about';
 import Project from '../project';
 import News from '../news';
+import Peoples from '../peoples';
 import TreeMenu from '../../components/menu';
 import OS from './other.styl';
 import CSSModules from 'react-css-modules';
@@ -21,6 +22,7 @@ const Others = (router) => {
       <Route path={`${match.url}/about/:id`} component={About} />
       <Route path={`${match.url}/project/:id`} component={Project} />
       <Route path={`${match.url}/news/:id`} component={News} />
+      <Route path={`${match.url}/peoples/:id`} component={Peoples} />
     </div>
   )
 };

@@ -40,8 +40,6 @@ class TreeMenu extends Component {
   handleClose() {
     this.setState({ isOpen: false });
   }
-  componentDidMount() {
-  }
   render() {
     const open = this.state.isOpen;
     const anchorEl = this.state.anchorEl;

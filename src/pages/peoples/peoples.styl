@@ -87,27 +87,44 @@
             line-height: 24px;
             font-size: 12px;
         }
-
-        .body-button {
-            color: white;
-            background-color: #c0a264;
-            outline: none;
-
-            &:hover {
-                background-color: #c0a264;
-                border-color: #c0a264;
-            }
-
-            &:active {
-                box-shadow: none;
-                background-color: #c0a264;
-                border-color: #c0a264;
-            }
-        }
     }
 }
+.body-button {
+    color: white;
+    background-color: #c0a264!important
+    outline: none;
 
+    &:hover {
+        background-color: #c0a264;
+        border-color: #c0a264;
+    }
 
+    &:active {
+        box-shadow: none;
+        background-color: #c0a264;
+        border-color: #c0a264;
+    }
+}
+.paper {
+    margin 10px;
+    width: calc(100% - 255px);
+    overflow-x: auto
+    float left
+}
+.table {
+    min-width: 700px
+    color #777777
+    font-size: 14px;
+}
+.dialog {
+    padding 20px 10px
+    background-color #f7f5f3!important
+}
+.form {
+    padding 20px 40px
+    background-color #f7f5f3!important
+    max-width 600px
+}
 @media screen and (max-width: 960px) {
     .text-container {
         width: 100%;
@@ -121,5 +138,7 @@
             width: 100%;
         }
     }
-
+    .paper {
+        width: calc(100% - 20px);
+    }
 }

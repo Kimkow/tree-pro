@@ -25,6 +25,11 @@ function NormalContent(props) {
   function handleChangePage(page) {
     setActiveList(contentObj[parseInt(page - 1)])
   }
+  let newArr = [];
+  contentObj.forEach(o => {
+    newArr  = newArr.concat(o);
+  });
+  let total =  newArr.length;
   return (
     <div styleName="text-container">
       <div styleName="line"/>
@@ -43,7 +48,7 @@ function NormalContent(props) {
           )
         })
       }
-      <Pagination total={7} pageSize={3} currentChange={handleChangePage} />
+      <Pagination total={total} pageSize={3} currentChange={handleChangePage} />
     </div>
   )
 }
