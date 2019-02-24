@@ -15,7 +15,7 @@ const options = [
   { name: '工程系列', link: '/others/project/1',pathname:'project' },
   { name: '苗木系列', link: '/others/miaomu/1' ,pathname:'miaomu'},
   { name: '新闻资讯', link: '/others/news/1' ,pathname:'news'},
-  { name: '人力资源', link: '/others/peoples',pathname:'peoples' },
+  { name: '人力资源', link: '/others/peoples/1',pathname:'peoples' },
   { name: '联系我们', link: '/others/callUs/1',pathname:'callUs' }
 ];
 

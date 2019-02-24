@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState,useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CSSModules from 'react-css-modules';
 import MinMenu from '../../components/minMenu';
@@ -14,7 +14,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Form from 'react-validation/build/form';
+import InputF from 'react-validation/build/input';
+import validation from '../../utils/validation';
 
 const minMenuData = [
   { name: '社会招聘', value: 1 },
@@ -28,13 +34,20 @@ function TableContent() {
   const [ detailObj, setDetailObj ] = useState({
     id:'',detail:''
   });
-  const [ openForm, setOpenForm ] = useState(false);
+  const [ openForm, setOpenForm ] = useState(true);
   const [values, setValues] = useState({
     name: '',
     phone: '',
     email: '',
     file: null,
   });
+  const [ruleMsg, setRuleMsg] = useState({
+    name: false,
+    phone: false,
+    email: false,
+    file: null,
+  });
+
   function handleClick(obj){
     setOpenDetail(true);
     let { id,detail} = obj;
@@ -51,9 +64,73 @@ function TableContent() {
   function handleCloseForm() {
     setOpenForm(false);
   }
+
+  function validationForm(name,value) {
+    let ruleList = [];
+    switch (name) {
+      case 'name':
+        ruleList = [validation.required];
+        break;
+      case 'email':
+        ruleList = [validation.required,validation.email];
+        break;
+      case 'phone':
+        ruleList = [validation.required,validation.phone];
+        break;
+      case 'file':
+        ruleList = [validation.file];
+        break;
+      default :
+        break;
+    }
+    let msg = false;
+    for(let i = 0;i<ruleList.length;i++){
+      if(msg){
+        break;
+      }else {
+        msg = ruleList[i](value);
+      }
+    }
+    setRuleMsg({ ...ruleMsg, [name]: msg });
+    return msg;
+  }
+  const upload = () =>{
+    let formData = new FormData();
+    let isPass = false;
+    console.log(ruleMsg);
+    validationForm('phone','');
+    console.log(ruleMsg);
+    validationForm('email','');
+    console.log(ruleMsg);
+    // console.log(validationForm('phone',''));
+    /*Object.keys(values).forEach(o=>{
+
+      if(!validationForm(o,values[o])){
+        isPass = true;
+      }else {
+        isPass = false;
+      }
+    });*/
+    // console.log(isPass);
+    for(let j in values){
+      formData.append(j,values[j]);
+    }
+  };
+
   const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-    console.log(values[name])
+    if(name === 'file') {
+      let reader=new FileReader();
+      let file = event.target.files;
+      if(file.length) {
+        if (!/image/.test(file[0].type)) {//操作文本
+          reader.readAsText(file[0]);
+          setValues({ ...values, [name]: file[0] });
+        }
+      }
+    }else {
+      setValues({ ...values, [name]: event.target.value });
+    }
+    validationForm(name,event.target.value)
   };
   return (
     <Paper styleName='paper'>
@@ -87,27 +164,33 @@ function TableContent() {
       </Dialog>
       <Dialog open={openForm} onClose={handleCloseForm} classes={{paperScrollPaper:PS.form}}>
         <div>
-          <TextField
-            label="姓名"
-            value={values.name}
-            onChange={handleChange('name')}
-            fullWidth
-          />
-          <TextField
-            label="联系方式"
-            value={values.phone}
-            onChange={handleChange('phone')}
-            fullWidth
-          />
-          <TextField
-            label="Email"
-            value={values.email}
-            onChange={handleChange('email')}
-            fullWidth
-          />
+          <FormControl error={ !!ruleMsg.name } fullWidth>
+            <InputLabel>姓名</InputLabel>
+            <Input
+              value={values.name}
+              onChange={handleChange('name')}
+            />
+            <FormHelperText>{ ruleMsg.name || '' }</FormHelperText>
+          </FormControl>
+          <FormControl error={ !!ruleMsg.phone } fullWidth>
+            <InputLabel>联系方式</InputLabel>
+            <Input
+              value={values.phone}
+              onChange={handleChange('phone')}
+            />
+            <FormHelperText>{ ruleMsg.phone || '' }</FormHelperText>
+          </FormControl>
+          <FormControl error={ !!ruleMsg.email } fullWidth>
+            <InputLabel>Email</InputLabel>
+            <Input
+              value={values.email}
+              onChange={handleChange('email')}
+            />
+            <FormHelperText>{ ruleMsg.email || '' }</FormHelperText>
+          </FormControl>
           <p>上传简历：<input name="18157_0" type="file" onChange={handleChange('file')}/></p>
           <div style={{textAlign:'center'}}>
-            <Button variant="contained" color="primary" styleName="body-button" onClick={handleOpenForm} style={{marginRight:'10px'}}>提交</Button>
+            <Button variant="contained" color="primary" styleName="body-button" onClick={upload} style={{marginRight:'10px'}}>提交</Button>
             <Button variant="contained"> 重置</Button>
           </div>
         </div>
