@@ -77,6 +77,8 @@ function TableContent() {
   };
 
   let handleReset = ()=>{
+    setValues({ 'name': '','phone': '','email': '',file:null });
+    console.log(values)
   };
 
   return (
