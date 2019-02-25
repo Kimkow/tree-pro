@@ -23,7 +23,7 @@ const phone = (value) => {
   }
 };
 const file = (value) => {
-  if (!validator.toString(value)) {
+  if (!value) {
     return '文件不能为空！'
   } else  {
     return false
