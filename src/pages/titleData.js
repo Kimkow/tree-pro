@@ -18,15 +18,15 @@ const callUs = {
     { name: '更多苗场', link: '' }
   ],
   '新闻资讯':[
-    { name: '公司新闻', link: '' },
-    { name: '行业新闻', link: '' },
-    { name: '公司活动', link: '' },
-    { name: '政策法规', link: '' }
+    { name: '公司新闻', link: '#/others/news/1' },
+    { name: '行业新闻', link: '#/others/news/2' },
+    { name: '公司活动', link: '#/others/news/3' },
+    { name: '政策法规', link: '#/others/news/4' }
   ],
   '人力资源':[
-    { name: '社会招聘', link: '' },
-    { name: '校园招聘', link: '' },
-    { name: '专业培训', link: '' }
+    { name: '社会招聘', link: '#/others/peoples/1' },
+    { name: '校园招聘', link: '#/others/peoples/2' },
+    { name: '专业培训', link: '#/others/peoples/3' }
   ],
   '联系我们':[
     { name: '联系我们', link: '#/others/callUs/1' },

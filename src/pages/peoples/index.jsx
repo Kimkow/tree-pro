@@ -16,6 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import validation from '../../utils/validation';
 import { MyValidationForm, MyValidationInput,MyValidationButton} from "../../components/myForm";
+import Tooltip from '@material-ui/core/Tooltip';
 
 const minMenuData = [
   { name: '社会招聘', value: 1 },
@@ -29,15 +30,15 @@ function TableContent() {
   const [ detailObj, setDetailObj ] = useState({
     id:'',detail:''
   });
-  const [ openForm, setOpenForm ] = useState(true);
+  const [ openForm, setOpenForm ] = useState(false);
   const [values, setValues] = useState({
     name: '',
     phone: '',
     email: '',
     file: null,
   });
-  const [myForm,setMyForm] = useState(createRef());
-  const [myPhone,setMyPhone] = useState(createRef());
+  let myForm = createRef();
+  const [fileOpen, setFileOpen ] = useState(false);
   function handleClick(obj){
     setOpenDetail(true);
     let { id,detail} = obj;
@@ -58,18 +59,23 @@ function TableContent() {
   const upload = () =>{
     let formData = new FormData();
     myForm.current.validateAll();
+    if(values.file){
+      setFileOpen(false)
+    }else {
+      setFileOpen(true)
+    }
   };
 
   const handleChange = name => event => {
     if(name === 'file') {
-      let reader=new FileReader();
+      // let reader=new FileReader();
       let file = event.target.files;
       if(file.length) {
-        if (!/image/.test(file[0].type)) {//操作文本
+        /*if (!/image/.test(file[0].type)) {//操作文本
           reader.readAsText(file[0]);
           setValues({ ...values, [name]: file[0] });
-          console.log(values);
-        }
+        }*/
+        setValues({ ...values, [name]: file[0] });
       }
     }else {
       setValues({ ...values, [name]: event.target.value });
@@ -78,7 +84,7 @@ function TableContent() {
 
   let handleReset = ()=>{
     setValues({ 'name': '','phone': '','email': '',file:null });
-    console.log(values)
+    console.log(myForm.current)
   };
 
   return (
@@ -121,19 +127,27 @@ function TableContent() {
               onChange={handleChange('name')}
               validations={[validation.required]}/>
             <MyValidationInput
-              ref={myPhone}
               label='联系方式'
               name='phone'
               value={values.phone}
               onChange={handleChange('phone')}
-              validations={[validation.required,validation.phone]}/>
+              validations={[validation.required,validation.mobilePhone]}/>
             <MyValidationInput
               label='Email'
               name='email'
               value={values.email}
               onChange={handleChange('email')}
               validations={[validation.required,validation.email]}/>
-            <p>上传简历：<input name="myFile" type="file" onChange={handleChange('file')}/></p>
+            <Tooltip
+              open={fileOpen}
+              placement="bottom-start"
+              title="上传文件不能为空！！"
+            >
+              <p>
+                上传简历：
+                <input name="myFile" type="file" onChange={handleChange('file')}/>
+              </p>
+            </Tooltip>
             <div style={{textAlign:'center'}}>
               <MyValidationButton variant="contained" color="primary" styleName="body-button" onClick={upload} style={{marginRight:'10px'}}>提交</MyValidationButton>
               <Button variant="contained" onClick={handleReset}>重置</Button>
