@@ -17,7 +17,7 @@ import Dialog from '@material-ui/core/Dialog';
 import validation from '../../utils/validation';
 import { MyValidationForm, MyValidationInput,MyValidationButton} from "../../components/myForm";
 import Tooltip from '@material-ui/core/Tooltip';
-
+import { formDataPost } from '../../utils/request'
 const minMenuData = [
   { name: '社会招聘', value: 1 },
   { name: '校园招聘', value: 2 },
@@ -57,13 +57,28 @@ function TableContent() {
   }
 
   const upload = () =>{
-    let formData = new FormData();
     myForm.current.validateAll();
     if(values.file){
       setFileOpen(false)
     }else {
       setFileOpen(true)
     }
+    let formData = new FormData();
+    formData.append('materialFile', values.file)
+    let config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      transformRequest: [
+        function(data) {
+          return data
+        }]
+    }
+    formDataPost('', formData, config).then(req => {
+
+    }).catch(_ => {
+      console.log(_)
+    })   
   };
 
   const handleChange = name => event => {
