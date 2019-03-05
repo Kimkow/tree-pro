@@ -126,7 +126,7 @@ function Body() {
             </p>
             <SwipeableViews styleName="banner-box" index={index} onChangeIndex={handleChangeIndex}>
               {data.map((item, index) => {
-                let projectUrl = '/others/object'
+                let projectUrl = '/others/project/4'
                 let subTitle = '';
                 if (item.subName) {
                   subTitle = (<span styleName="sub-title"><br />{item.subName}</span>);
@@ -199,7 +199,7 @@ function Body() {
             )
           })}
           <p style={{ textAlign: 'center' }}>
-            <Button variant="contained" color="primary" href="#/about" styleName="body-button">查看更多</Button>
+            <Button variant="contained" color="primary" href="#/others/about/1" styleName="body-button">查看更多</Button>
           </p>
           <img src={require('../../assets/images/201703031544534453.jpg')} alt="" styleName="body-img" />
         </div>

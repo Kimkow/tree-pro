@@ -1,0 +1,45 @@
+.container {
+    padding: 60px 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.text-container {
+    width: calc(100% - 235px);
+    box-sizing: border-box;
+    float: left;
+    padding: 10px 30px;
+    position: relative;
+}
+.menu {
+    width: 235px;
+    background: url('../../assets/images/about/left_nav_bg.jpg') right top no-repeat;
+    float: left;
+    min-height: 406px;
+
+    .img-group {
+        text-align: center;
+
+        img {
+            &:first-child {
+                vertical-align: 10px;
+                margin-right: 15px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 960px) {
+    .text-container {
+        width: 100%;
+        padding 10px
+
+        .img,.line {
+            display: none;
+        }
+
+        .content {
+            width: 100%;
+        }
+    }
+}
