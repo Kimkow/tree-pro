@@ -49,15 +49,22 @@ function MenuList(props) {
 
 const MinMenu = (props) => {
   let { listData, menuPath, isChange, isMaiomu } = props;
-  const MenuListMMS = CSSModules(MenuList, MMS, { "allowMultiple": true })
-  const [miaomuStatus, setMiaomuStatus] = useState(null)
+  const MenuListMMS = CSSModules(MenuList, MMS, { "allowMultiple": true });
+  const [miaomuStatus, setMiaomuStatus] = useState(null);
   activeIndex = parseInt(props.activeIndex);
   let handleHoverIn = (i) => {
     setMiaomuStatus(i)
-  }
+  };
   let handleHoverOut = () => {
     setMiaomuStatus(null)
-  }
+  };
+  let changeActive = (obj) =>{
+    if(obj.children && obj.children.length > 0){
+      return false
+    }else {
+      props.handlerData && props.handlerData(obj)
+    }
+  };
   return (
     <List component="nav">
       {
@@ -65,14 +72,14 @@ const MinMenu = (props) => {
           if (isMaiomu) {
             return (
               <ListItem key={i} button component="a" href={`#${menuPath + o.value}`} style={{ position: 'relative' }} onMouseOver={() => { handleHoverIn(i) }} onMouseLeave={handleHoverOut}>
-                <ListItemText primary={o.name} styleName={activeIndex === o.value ? 'list active' : 'list'} />
+                <ListItemText onClick={()=>{changeActive(o)}} primary={o.name} styleName={activeIndex === o.value ? 'list active' : 'list'} />
                 {o.children && o.children.length > 0 ? <span styleName="list-icon"><ArrowRight /></span> : ''}
                 {o.children && o.children.length > 0 ?
                   (
                     miaomuStatus === i ? <div styleName='list-children-box'>
                       {
                         o.children.map((c, childIndex) => {
-                          return (<Button color="primary" key={childIndex} styleName="body-button">{c.name}</Button>)
+                          return (<Button onClick={()=>{changeActive(c)}} color="primary" key={childIndex} styleName="body-button">{c.name}</Button>)
                         })
                       }
                     </div> : ''

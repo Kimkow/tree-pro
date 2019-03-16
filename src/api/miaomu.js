@@ -7,3 +7,17 @@ export function getMenu(params) {
     params
   })
 }
+export function getList(params) {
+  return request({
+    url: '/article/list',
+    method: 'get',
+    params
+  })
+}
+export function getInfo(params) {
+  return request({
+    url: '/article/info',
+    method: 'get',
+    params
+  })
+}
