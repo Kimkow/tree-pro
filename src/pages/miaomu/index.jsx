@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import CSSModules from 'react-css-modules';
 import MS from './miaomu.styl';
@@ -6,6 +6,7 @@ import MinMenu from '../../components/minMenu';
 import Hideen from '@material-ui/core/Hidden';
 import {getMenu, getList, getInfo} from '../../api/miaomu';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Detail from '../../components/detail';
 
 const Content = (props) => {
   const {listData, title, loading} = props;
@@ -47,7 +48,7 @@ const Content = (props) => {
       }
     </div>
   )
-}
+};
 
 class MiaoMu extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class MiaoMu extends Component {
   }
 
   componentDidMount() {
-    this.getMenuList()
+    // this.getMenuList()
   }
 
   getMenuList() {
@@ -122,6 +123,7 @@ class MiaoMu extends Component {
                    handlerData={this.handleChildData}/>
         </Hideen>
         <ContentMS loading={this.state.listLoading} listData={this.state.listData} title={this.state.listTitle}/>
+        <Detail isMaiomu publicSrc={''} detailObj={{images:[],head:'',text:'',title:''}}/>
       </div>
     );
   }

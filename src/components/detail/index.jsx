@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import CSSModules from 'react-css-modules';
 import DS from './detail.styl';
 import ScrollArea from 'react-scrollbar';
+import PropTypes from 'prop-types';
 function Detail(props){
-  const { detailObj,publicSrc } = props;
+  const { detailObj,publicSrc,isMaiomu } = props;
   const [activeImg,setActiveImg] = useState(detailObj.images[0]);
-
+  console.log({ detailObj,publicSrc,isMaiomu } );
   function handleClick(url) {
     setActiveImg(url)
   }
@@ -13,18 +14,25 @@ function Detail(props){
   return (
     <div styleName="detail-container">
       <div styleName="line" />
-      <div styleName="detail-imgs">
-        <img src={require('../../assets/images/'+publicSrc+activeImg)} alt="" styleName="big"/>
-        <ScrollArea className='small-group' styleName='small-group' contentStyle={{width:`${contentWidth}px`}} vertical={false}>
-          {
-            detailObj.images.map((o,i)=>{
-              return (
-                <img styleName={activeImg === o?'on':''} key={i} src={require('../../assets/images/'+publicSrc+o)} alt="" onClick={()=>{handleClick(o)}}/>
-              )
-            })
-          }
-        </ScrollArea>
-      </div>
+      { isMaiomu ?
+        <div styleName="detail-imgs">
+          <video src="" styleName="big">浏览器不支持video</video>
+          <div>这是苗木</div>
+        </div>
+        :
+        <div styleName="detail-imgs">
+          <img src={require('../../assets/images/'+publicSrc+activeImg)} alt="" styleName="big"/>
+          <ScrollArea className='small-group' styleName='small-group' contentStyle={{width:`${contentWidth}px`}} vertical={false}>
+            {
+              detailObj.images.map((o,i)=>{
+                return (
+                  <img styleName={activeImg === o?'on':''} key={i} src={require('../../assets/images/'+publicSrc+o)} alt="" onClick={()=>{handleClick(o)}}/>
+                )
+              })
+            }
+          </ScrollArea>
+        </div>
+      }
       <div styleName="header">
         <ScrollArea className='header-box' styleName="header-box">
           <h1>{detailObj.head}</h1>
@@ -35,4 +43,10 @@ function Detail(props){
     </div>
   )
 }
+Detail.defaultProps = {
+  isMaiomu: false
+};
+Detail.propTypes = {
+  isMaiomu: PropTypes.bool
+};
 export default CSSModules(Detail, DS, { "allowMultiple": true });
