@@ -21,3 +21,10 @@ export function getInfo(params) {
     params
   })
 }
+export function postData(data) {
+  return request({
+    url: '/message',
+    method: 'post',
+    data
+  })
+}

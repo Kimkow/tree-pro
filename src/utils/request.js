@@ -4,7 +4,7 @@ import qs from 'qs'
 const service = axios.create({
   method: 'post',
   baseURL: '/api',//process.env.BASE_API, // api 的 base_url
-  timeout: 15000 // request timeout
+  timeout: 15000, // request timeout
 })
 
 // request interceptor
@@ -35,7 +35,7 @@ service.interceptors.response.use(
 export function formDataPost(url, data = {}, config = {}) {
   return new Promise((resolve, reject) => {
     service.post(url, data, config).then(response => {
-      resolve(response.data)
+      resolve(response)
     }).catch(err => {
       reject(err)
     })

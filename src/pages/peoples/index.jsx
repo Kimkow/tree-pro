@@ -1,4 +1,4 @@
-import React, { Component, useState,createRef } from 'react';
+import React, { Component, useState, createRef } from 'react';
 import Button from '@material-ui/core/Button';
 import CSSModules from 'react-css-modules';
 import MinMenu from '../../components/minMenu';
@@ -15,9 +15,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import validation from '../../utils/validation';
-import { MyValidationForm, MyValidationInput,MyValidationButton} from "../../components/myForm";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { MyValidationForm, MyValidationInput, MyValidationButton } from "../../components/myForm";
 import Tooltip from '@material-ui/core/Tooltip';
-import { formDataPost } from '../../utils/request'
+import { formDataPost } from '../../utils/request';
+
 const minMenuData = [
   { name: '社会招聘', value: 1 },
   { name: '校园招聘', value: 2 },
@@ -26,27 +28,32 @@ const minMenuData = [
 
 function TableContent() {
   const rows = contentText.tableList;
-  const [ openDetail, setOpenDetail ] = useState(false);
-  const [ detailObj, setDetailObj ] = useState({
-    id:'',detail:''
+  const [openDetail, setOpenDetail] = useState(false);
+  const [detailObj, setDetailObj] = useState({
+    id: '', detail: ''
   });
-  const [ openForm, setOpenForm ] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
   const [values, setValues] = useState({
     name: '',
     phone: '',
     email: '',
     file: null,
   });
+  const [tipDialog, setTipDialog] = useState({
+    show: false,
+    text: ""
+  });
+  const [loading, setLoading] = useState(false);
   let myForm = createRef();
-  const [fileOpen, setFileOpen ] = useState(false);
-  function handleClick(obj){
+  const [fileOpen, setFileOpen] = useState(false);
+  function handleClick(obj) {
     setOpenDetail(true);
-    let { id,detail} = obj;
-    setDetailObj({id,detail});
+    let { id, detail } = obj;
+    setDetailObj({ id, detail });
   }
   function handleCloseDetail() {
     setOpenDetail(false);
-    setDetailObj({id:'',detail:''});
+    setDetailObj({ id: '', detail: '' });
   }
   function handleOpenForm() {
     setOpenDetail(false);
@@ -55,51 +62,54 @@ function TableContent() {
   function handleCloseForm() {
     setOpenForm(false);
   }
-
-  const upload = () =>{
-    myForm.current.validateAll();
-    if(values.file){
-      setFileOpen(false)
-    }else {
-      setFileOpen(true)
-    }
-    let formData = new FormData();
-    formData.append('materialFile', values.file)
-    let config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      transformRequest: [
-        function(data) {
-          return data
-        }]
-    }
-    formDataPost('', formData, config).then(req => {
-
-    }).catch(_ => {
-      console.log(_)
-    })   
-  };
-
   const handleChange = name => event => {
-    if(name === 'file') {
-      // let reader=new FileReader();
+    if (name === 'file') {
       let file = event.target.files;
-      if(file.length) {
-        /*if (!/image/.test(file[0].type)) {//操作文本
-          reader.readAsText(file[0]);
-          setValues({ ...values, [name]: file[0] });
-        }*/
+      if (file.length) {
         setValues({ ...values, [name]: file[0] });
       }
-    }else {
+    } else {
       setValues({ ...values, [name]: event.target.value });
     }
   };
 
-  let handleReset = ()=>{
-    setValues({ 'name': '','phone': '','email': '',file:null });
+  const handleReset = () => {
+    setValues({ 'name': '', 'phone': '', 'email': '', file: null });
     console.log(myForm.current)
+  };
+  
+  const upload = () => {
+    myForm.current.validateAll();
+    if (values.file) {
+      setFileOpen(false)
+    } else {
+      setFileOpen(true)
+    }
+    let formData = new FormData();
+    formData.append('file', values.file);
+    formData.append('name', values.name);
+    formData.append('mail', values.email);
+    formData.append('moblie', values.phone);
+    let config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    setLoading(true)
+    formDataPost('/cv', formData, config).then(req => {
+      if (req) {
+        setTipDialog({ show: true, text: '提交成功！' });
+      } else {
+        setTipDialog({ show: true, text: '提交失败！请重新提交！' });
+      }
+      setTimeout(_ => {
+        setTipDialog({ show: false, text: '' });
+        setLoading(false)
+      }, 1000)
+    }).catch(_ => {
+      console.log(_)
+      setLoading(false)
+    })
   };
 
   return (
@@ -116,7 +126,7 @@ function TableContent() {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow style={{cursor:'pointer'}} key={row.id} onClick={()=>{handleClick(row)}}>
+            <TableRow style={{ cursor: 'pointer' }} key={row.id} onClick={() => { handleClick(row) }}>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.education}</TableCell>
               <TableCell>{row.num}</TableCell>
@@ -126,13 +136,13 @@ function TableContent() {
           ))}
         </TableBody>
       </Table>
-      <Dialog open={openDetail} onClose={handleCloseDetail} classes={{paperScrollPaper:PS.dialog}}>
+      <Dialog open={openDetail} onClose={handleCloseDetail} classes={{ paperScrollPaper: PS.dialog }}>
         <div dangerouslySetInnerHTML={{ __html: detailObj.detail }} />
         <Hideen smDown>
           <Button variant="contained" color="primary" styleName="body-button" onClick={handleOpenForm}>我要应聘</Button>
         </Hideen>
       </Dialog>
-      <Dialog open={openForm} onClose={handleCloseForm} classes={{paperScrollPaper:PS.form}}>
+      <Dialog open={openForm} onClose={handleCloseForm} classes={{ paperScrollPaper: PS.form }}>
         <div>
           <MyValidationForm ref={myForm}>
             <MyValidationInput
@@ -140,19 +150,19 @@ function TableContent() {
               name='name'
               value={values.name}
               onChange={handleChange('name')}
-              validations={[validation.required]}/>
+              validations={[validation.required]} />
             <MyValidationInput
               label='联系方式'
               name='phone'
               value={values.phone}
               onChange={handleChange('phone')}
-              validations={[validation.required,validation.mobilePhone]}/>
+              validations={[validation.required, validation.mobilePhone]} />
             <MyValidationInput
               label='Email'
               name='email'
               value={values.email}
               onChange={handleChange('email')}
-              validations={[validation.required,validation.email]}/>
+              validations={[validation.required, validation.email]} />
             <Tooltip
               open={fileOpen}
               placement="bottom-start"
@@ -160,15 +170,30 @@ function TableContent() {
             >
               <p>
                 上传简历：
-                <input name="myFile" type="file" onChange={handleChange('file')}/>
+                <input name="myFile" type="file" onChange={handleChange('file')} />
               </p>
             </Tooltip>
-            <div style={{textAlign:'center'}}>
-              <MyValidationButton variant="contained" color="primary" styleName="body-button" onClick={upload} style={{marginRight:'10px'}}>提交</MyValidationButton>
+            <div style={{ textAlign: 'center' }}>
+              <MyValidationButton variant="contained" color="primary" styleName="body-button" onClick={upload} style={{ marginRight: '10px' }}>提交</MyValidationButton>
               <Button variant="contained" onClick={handleReset}>重置</Button>
             </div>
           </MyValidationForm>
         </div>
+      </Dialog>
+      <Dialog open={loading}>
+        {!tipDialog.show ?
+          <div style={{ width: '150px', height: '150px', position: 'relative' }}>
+            <CircularProgress size={30} thickness={5} style={{
+              color: '#c0a264',
+              position: 'absolute',
+              top: '40%',
+              left: '40%',
+              zIndex: 99999
+            }} />
+          </div>
+          :
+          <div style={{ padding: '20px' }}>{tipDialog.text}</div>
+        }
       </Dialog>
     </Paper>
   )
@@ -186,12 +211,12 @@ function NormalContent(props) {
   }
   let newArr = [];
   contentObj.forEach(o => {
-    newArr  = newArr.concat(o);
+    newArr = newArr.concat(o);
   });
-  let total =  newArr.length;
+  let total = newArr.length;
   return (
     <div styleName="text-container">
-      <div styleName="line"/>
+      <div styleName="line" />
       {
         activeList.map((o, i) => {
           return (
@@ -199,7 +224,7 @@ function NormalContent(props) {
               <img styleName="img" src={require("../../assets/images/peoples/" + o.url)} alt="" />
               <div styleName="content">
                 <h1>{o.title}</h1>
-                <p styleName="date">发布时间：<span>{ o.time }</span></p>
+                <p styleName="date">发布时间：<span>{o.time}</span></p>
                 <p>{o.text}</p>
                 <Button variant="contained" component='a' href={`#/others/peoples/${activeIndex}/${o.value}`} color="primary" styleName="body-button">查看详情</Button>
               </div>
@@ -237,11 +262,11 @@ class Project extends Component {
     let path = this.props.match.path.split(':')[0];
     let activeIndex = this.props.match.params.id; // 当前子菜单ID
     let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), '');
-    childId = childId.replace(/\//g,'');//详情ID
+    childId = childId.replace(/\//g, '');//详情ID
     const publicSrc = `peoples/${activeIndex}/detail/${childId}/`;
 
     let detailObj = {};
-    if(childId) {
+    if (childId) {
       detailObj = contentText.detailList[activeIndex][childId];//详情内容
     }
 
@@ -260,9 +285,8 @@ class Project extends Component {
           <MinMenu listData={minMenuData} menuPath={path} activeIndex={activeIndex} />
         </Hideen>
         {
-          childId ? <Detail detailObj={detailObj} publicSrc={publicSrc}/> : <ContentText activeIndex={activeIndex} />
+          childId ? <Detail detailObj={detailObj} publicSrc={publicSrc} /> : <ContentText activeIndex={activeIndex} />
         }
-
       </div>
     )
   }

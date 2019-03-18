@@ -4,7 +4,7 @@ import DS from './detail.styl';
 import ScrollArea from 'react-scrollbar';
 import PropTypes from 'prop-types';
 function Detail(props){
-  const { detailObj,publicSrc,isMaiomu } = props;
+  const { detailObj,publicSrc,isMaiomu,video } = props;
   const [activeImg,setActiveImg] = useState(detailObj.images[0]);
   console.log({ detailObj,publicSrc,isMaiomu } );
   function handleClick(url) {
@@ -16,8 +16,7 @@ function Detail(props){
       <div styleName="line" />
       { isMaiomu ?
         <div styleName="detail-imgs">
-          <video src="" styleName="big">浏览器不支持video</video>
-          <div>这是苗木</div>
+          <video src={video} styleName="big">浏览器不支持video</video>
         </div>
         :
         <div styleName="detail-imgs">
