@@ -3,7 +3,7 @@
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
-process.env.BASE_API = 'http://ttttttest.utools.club';
+process.env.BASE_API = 'http://65.49.204.82:8080/api';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will

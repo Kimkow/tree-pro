@@ -71,8 +71,8 @@ const MinMenu = (props) => {
         listData.map((o, i) => {
           if (isMaiomu) {
             return (
-              <ListItem key={i} button component="a" href={`#${menuPath + o.value}`} style={{ position: 'relative' }} onMouseOver={() => { handleHoverIn(i) }} onMouseLeave={handleHoverOut}>
-                <ListItemText onClick={()=>{changeActive(o)}} primary={o.name} styleName={activeIndex === o.value ? 'list active' : 'list'} />
+              <ListItem key={i} button style={{ position: 'relative' }} onMouseOver={() => { handleHoverIn(i) }} onMouseLeave={handleHoverOut}>
+                <ListItemText primary={o.name} styleName={activeIndex === o.value ? 'list active' : 'list'} />
                 {o.children && o.children.length > 0 ? <span styleName="list-icon"><ArrowRight /></span> : ''}
                 {o.children && o.children.length > 0 ?
                   (

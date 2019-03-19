@@ -28,3 +28,10 @@ export function postData(data) {
     data
   })
 }
+export function getAllList(params) {
+  return request({
+    url: '/index/list',
+    method: 'get',
+    params
+  })
+}

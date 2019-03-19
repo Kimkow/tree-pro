@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 function Detail(props){
   const { detailObj,publicSrc,isMaiomu,video } = props;
   const [activeImg,setActiveImg] = useState(detailObj.images[0]);
-  console.log({ detailObj,publicSrc,isMaiomu } );
   function handleClick(url) {
     setActiveImg(url)
   }

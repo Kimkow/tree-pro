@@ -12,10 +12,7 @@ const callUs = {
     { name: '获奖项目', link: '#/others/project/4' }
   ],
   '苗木系列':[
-    { name: '苗木事业部', link: '' },
-    { name: '海南东方苗场', link: '' },
-    { name: '四季百和中山苗场', link: '' },
-    { name: '更多苗场', link: '' }
+    { name: '苗木主页', link: '#/others/miaomu/0' }
   ],
   '新闻资讯':[
     { name: '公司新闻', link: '#/others/news/1' },
