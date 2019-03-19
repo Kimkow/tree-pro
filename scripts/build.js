@@ -4,6 +4,7 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 process.env.BASE_API = 'http://65.49.204.82:8080/api';
+process.env.GENERATE_SOURCEMAP = 'false';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
