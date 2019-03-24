@@ -83,9 +83,9 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     // proxy,
     proxy: {
-      "/api": {
-        "target": "http://65.49.204.82:8080",
-        "pathRewrite": {"^/api" : "/api"},
+      "/wuxiao-api": {
+        "target": "http://65.49.204.82:8060",
+        "pathRewrite": {"^/wuxiao-api" : "/wuxiao-api"},
         changeOrigin: true,
       }
     },
