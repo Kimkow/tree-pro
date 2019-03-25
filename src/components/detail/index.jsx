@@ -42,9 +42,11 @@ function Detail(props){
   )
 }
 Detail.defaultProps = {
-  isMaiomu: false
+  isMaiomu: false,
+  video:''
 };
 Detail.propTypes = {
-  isMaiomu: PropTypes.bool
+  isMaiomu: PropTypes.bool,
+  video: PropTypes.string
 };
 export default CSSModules(Detail, DS, { "allowMultiple": true });

@@ -4,7 +4,7 @@ import qs from 'qs'
 const service = axios.create({
   method: 'post',
   baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: 15000, // request timeout
+  // timeout: 15000, // request timeout
 })
 
 // request interceptor

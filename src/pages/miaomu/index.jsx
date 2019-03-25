@@ -58,7 +58,7 @@ const Content = (props) => {
         </div>
         :
         showInfo ?
-          <Detail isMaiomu detailObj={{ images: [], head: detail.title, text: detail.text, video: detail.video }} />
+          <Detail isMaiomu detailObj={{ images: [], head: detail.title, text: detail.text }} video={ detail.video && detail.video.path} />
           :
           <div styleName="list-content">
             {
@@ -223,7 +223,7 @@ class MiaoMu extends Component {
         <Hideen smDown>
           <div styleName="menu">
             <div styleName="img-group">
-              <img src={require('../../assets/images/peoples/menu.png')} alt="" />
+              <img src={require('../../assets/images/miaomu/miaomu_title.png')} alt="" />
               <img style={{ cursor: 'pointer' }} src={require('../../assets/images/icont_tip_bg2.png')} alt="" onClick={() => { this.getAllContentList() }} />
             </div>
             <MinMenu isMaiomu listData={this.state.minMenuData} menuPath={path} activeIndex={activeIndex}
