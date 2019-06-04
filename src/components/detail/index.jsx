@@ -15,7 +15,7 @@ function Detail(props){
       <div styleName="line" />
       { isMaiomu ?
         <div styleName="detail-imgs">
-          <video src={video} styleName="big">浏览器不支持video</video>
+          <video src={video} styleName="big" autoplay="autoplay" controls="controls">浏览器不支持video</video>
         </div>
         :
         <div styleName="detail-imgs">
