@@ -19,6 +19,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { MyValidationForm, MyValidationInput, MyValidationButton } from "../../components/myForm";
 import Tooltip from '@material-ui/core/Tooltip';
 import { formDataPost } from '../../utils/request';
+import CloseIcon from '@material-ui/icons/HighlightOff';
 
 const minMenuData = [
   { name: '社会招聘', value: 1 },
@@ -75,7 +76,6 @@ function TableContent() {
 
   const handleReset = () => {
     setValues({ 'name': '', 'phone': '', 'email': '', file: null });
-    console.log(myForm.current)
   };
   
   const upload = () => {
@@ -137,6 +137,7 @@ function TableContent() {
         </TableBody>
       </Table>
       <Dialog open={openDetail} onClose={handleCloseDetail} classes={{ paperScrollPaper: PS.dialog }}>
+        <CloseIcon styleName='close-icon' onClick={handleCloseDetail}/>
         <div dangerouslySetInnerHTML={{ __html: detailObj.detail }} />
         <Hideen smDown>
           <Button variant="contained" color="primary" styleName="body-button" onClick={handleOpenForm}>我要应聘</Button>

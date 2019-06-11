@@ -51,7 +51,7 @@ class TreeMenu extends Component {
       }
       return (
         <div styleName={`title-0${index + 1} ${activeMenu}`} key={index}>
-          <span><Link to={option.link} replace></Link></span>
+          <span><Link to={option.link}></Link></span>
         </div>
       )
     })
@@ -90,7 +90,7 @@ class TreeMenu extends Component {
           >
             {options.map((option, index) => (
               <MenuItem styleName="menuLink" key={index} selected={option.name === 'Pyxis'} onClick={this.handleClose}>
-                <Link to={option.link} replace>{option.name}</Link>
+                <Link to={option.link}>{option.name}</Link>
               </MenuItem>
             ))}
           </Menu>

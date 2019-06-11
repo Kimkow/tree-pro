@@ -3,11 +3,15 @@ import CSSModules from 'react-css-modules';
 import DS from './detail.styl';
 import ScrollArea from 'react-scrollbar';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 function Detail(props){
   const { detailObj,publicSrc,isMaiomu,video } = props;
   const [activeImg,setActiveImg] = useState(detailObj.images[0]);
   function handleClick(url) {
     setActiveImg(url)
+  }
+  function hangleBackGo() {
+    console.log(this)
   }
   let contentWidth = detailObj.images.length * 110;
   return (
@@ -15,7 +19,7 @@ function Detail(props){
       <div styleName="line" />
       { isMaiomu ?
         <div styleName="detail-imgs">
-          <video src={video} styleName="big" autoplay="autoplay" controls="controls">浏览器不支持video</video>
+          <video src={video} styleName="big" autoPlay controls="controls">浏览器不支持video</video>
         </div>
         :
         <div styleName="detail-imgs">
@@ -38,6 +42,9 @@ function Detail(props){
         </ScrollArea>
       </div>
       <div styleName="detail-text" dangerouslySetInnerHTML={{ __html: detailObj.text }} />
+      { 
+        isMaiomu && <Link styleName="back-btn" to="/others/miaomu/0">返回上一级</Link>
+      }
     </div>
   )
 }

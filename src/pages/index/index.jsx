@@ -281,11 +281,11 @@ class Index extends Component {
     return (
       <div className="index-page" >
         <Hideen smDown>
-          <Link to="/others" styleName='title' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
+          <Link to="/others" styleName='title'><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
         <TreeMenu menuName={menuName} />
         <Hideen mdUp>
-          <Link to="/others" styleName='title mdUp' replace><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
+          <Link to="/others" styleName='title mdUp'><img src={titleImg} alt="深圳市四季青园林股份有限公司" /></Link>
         </Hideen>
         <BannerSwiperIS />
         <BodyIS />

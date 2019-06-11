@@ -130,15 +130,6 @@ class MiaoMu extends Component {
       this.setState({ menuLoading: false });
       this.setState({ minMenuData: req || [] });
       this.getAllContentList();
-      /* let activeIndex = this.props.match.params.id; // 当前选中menu 的Index
-      let childId = this.props.location.pathname.replace(new RegExp(this.props.match.url, 'g'), '');
-      childId = parseInt(childId.replace(/\//g, ''));//详情ID
-      if (activeIndex !== null && activeIndex !== undefined && activeIndex === '0') {
-        this.getAllContentList();
-      } else {
-        let name = this.findMenuData(childId, req);
-        this.getContentList(childId, name);
-      } */
     }).catch(_ => {
       console.log(_);
       this.setState({ menuLoading: false });

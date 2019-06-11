@@ -14,7 +14,7 @@ const Others = (router) => {
   let menuType = router.location.pathname.split('/')[2];
   return (
     <div styleName="others-page">
-      <Link to="/others" styleName='title' replace><img src={require('../../assets/images/201703031135283528.png')} alt="深圳市四季青园林股份有限公司" /></Link>
+      <Link to="/others" styleName='title'><img src={require('../../assets/images/201703031135283528.png')} alt="深圳市四季青园林股份有限公司" /></Link>
       <TreeMenu menuName={menuType} />
       <div styleName="other-title-bg" style={{backgroundImage:`url(${require(`../../assets/images/others/${menuType}.jpg`)})`}}/>
       <Route path={`${match.url}/miaomu/:id`} component={Miaomu} />
