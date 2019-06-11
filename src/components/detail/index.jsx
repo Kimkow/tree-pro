@@ -10,9 +10,6 @@ function Detail(props){
   function handleClick(url) {
     setActiveImg(url)
   }
-  function hangleBackGo() {
-    console.log(this)
-  }
   let contentWidth = detailObj.images.length * 110;
   return (
     <div styleName="detail-container">
