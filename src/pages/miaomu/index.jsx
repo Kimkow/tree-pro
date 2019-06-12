@@ -169,14 +169,6 @@ class MiaoMu extends Component {
         });
         listData.push(data);
       });
-      console.log(listData);
-      /* req.forEach((o, i) => {
-        listData.push({
-          title: o.menuName,
-          id: o.menuId,
-          data: o.articleListVOList
-        })
-      }); */
       this.setState({ listData })
     }).catch(_ => {
       console.log(_);
